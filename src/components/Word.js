@@ -1,12 +1,34 @@
-export default function Word({word,index,setWord,removeWord}) {
-    const handleSubmit = (event) => {
+export default function Word({word,index,setWord,removeWord,uploadFile}) {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const elements = event.target.elements;
         const newWord = {}
-        if (elements.term.value.length > 0 && elements.definition.value.length > 0) {
+        // if (elements.picture) {
+        //     newWord.term = elements.term.value;
+        //     newWord.definition = elements.definition.value;
+        //     newWord.editing = false;
+        // }
+        if (elements.term.value.length > 0) {
             newWord.term = elements.term.value; 
-            newWord.definition = elements.definition.value;
             newWord.editing = false;
+            if (word.picture) {
+                if (elements.picture.files.length === 1) {
+                    newWord.definition = await uploadFile(elements.picture.files[0]);
+                }
+                else {
+                    console.log('empty file');
+                    newWord.definition = '';
+                }
+            }
+            else {
+                if (elements.definition.value) {
+                    newWord.definition = elements.definition.value;
+                }
+                else {
+                    console.log('empty definition');
+                    newWord.definition = '';
+                }
+            }
             setWord(newWord,index);
             event.target.reset();
         }
@@ -19,9 +41,19 @@ export default function Word({word,index,setWord,removeWord}) {
             <div>
                 <form onSubmit={handleSubmit}>
                     <input name="term" defaultValue={word.term} placeholder="term"></input>
+                    {word.picture?
+                    <input name="picture" type="file"></input>
+                    :
                     <input name="definition" defaultValue={word.definition} placeholder="definition"></input>
+                    
+                }
                     <input type="submit"/>
                 </form>
+                <span onClick={() => {
+                    setWord({...word,picture:word.picture===true?false:true},index)
+                }}>
+                    🖼️
+                </span>
             </div>
         )
     }
