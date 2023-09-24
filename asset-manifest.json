@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/learnstuffweb/static/css/main.eeb48693.css",
+    "main.js": "/learnstuffweb/static/js/main.6a3a3289.js",
+    "static/js/787.4e35e10d.chunk.js": "/learnstuffweb/static/js/787.4e35e10d.chunk.js",
+    "index.html": "/learnstuffweb/index.html",
+    "main.eeb48693.css.map": "/learnstuffweb/static/css/main.eeb48693.css.map",
+    "main.6a3a3289.js.map": "/learnstuffweb/static/js/main.6a3a3289.js.map",
+    "787.4e35e10d.chunk.js.map": "/learnstuffweb/static/js/787.4e35e10d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eeb48693.css",
+    "static/js/main.6a3a3289.js"
+  ]
+}
